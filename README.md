@@ -1,4 +1,3 @@
-# -Script-PowerShell-Cria-o-de-Usu-rios-no-Active-Directory
 Este script cria usuários automaticamente no AD, define senha, coloca em grupos e organiza em OUs. É ótimo para estudos, laboratórios e demonstração de habilidades.
 # Script PowerShell – Criação de Usuários no Active Directory
 
