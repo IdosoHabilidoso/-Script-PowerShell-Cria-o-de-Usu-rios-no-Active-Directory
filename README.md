@@ -1,36 +1,26 @@
 # -Script-PowerShell-Cria-o-de-Usu-rios-no-Active-Directory
 Este script cria usuários automaticamente no AD, define senha, coloca em grupos e organiza em OUs. É ótimo para estudos, laboratórios e demonstração de habilidades.
-# Script para criar usuários no Active Directory
-# Autor: Giuliano Moraes
-# Objetivo: Automatizar a criação de usuários em um ambiente AD
+# Script PowerShell – Criação de Usuários no Active Directory
 
-Import-Module ActiveDirectory
+Este projeto demonstra a automação da criação de usuários no Active Directory utilizando PowerShell.  
+Ideal para estudos, laboratórios e ambientes de teste.
 
-# Lista de usuários a serem criados
-$usuarios = @(
-    @{Nome="Joao Silva"; Usuario="joao.silva"; Senha="P@ssw0rd123"; OU="OU=Usuarios,DC=dominio,DC=local"; Grupo="TI"},
-    @{Nome="Maria Souza"; Usuario="maria.souza"; Senha="P@ssw0rd123"; OU="OU=Usuarios,DC=dominio,DC=local"; Grupo="Financeiro"},
-    @{Nome="Carlos Pereira"; Usuario="carlos.pereira"; Senha="P@ssw0rd123"; OU="OU=Usuarios,DC=dominio,DC=local"; Grupo="RH"}
-)
+## 🧰 Tecnologias utilizadas
+- Windows Server
+- Active Directory Domain Services
+- PowerShell
 
-foreach ($u in $usuarios) {
+## 🚀 Funcionalidades
+- Criação automática de usuários
+- Definição de senha
+- Atribuição de grupos
+- Organização em OUs
 
-    Write-Host "Criando usuário: $($u.Nome)"
+## 📂 Arquivos
+- `Create-ADUsers.ps1` – Script principal
 
-    # Criação do usuário
-    New-ADUser `
-        -Name $u.Nome `
-        -SamAccountName $u.Usuario `
-        -UserPrincipalName "$($u.Usuario)@dominio.local" `
-        -AccountPassword (ConvertTo-SecureString $u.Senha -AsPlainText -Force) `
-        -Enabled $true `
-        -Path $u.OU `
-        -ChangePasswordAtLogon $false
-
-    # Adiciona ao grupo
-    Add-ADGroupMember -Identity $u.Grupo -Members $u.Usuario
-
-    Write-Host "Usuário $($u.Usuario) criado e adicionado ao grupo $($u.Grupo)."
-}
-
-Write-Host "Processo concluído!"
+## 📌 Como usar
+1. Abra o PowerShell como Administrador.
+2. Execute o script:
+   ```powershell
+   .\Create-ADUsers.ps1
